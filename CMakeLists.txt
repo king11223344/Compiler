@@ -4,4 +4,4 @@ project(compiler)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable( comp src/main.cpp)
+add_executable( fuck src/main.cpp)
