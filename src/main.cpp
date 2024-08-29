@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
     if (argc != 2) {
         cerr << "Incorrect usage. Correct usage is..." << endl;
-        cerr << "hydro <input.hy>" << endl;
+        cerr << "basic <input.bl>" << endl;
         return EXIT_FAILURE;
     }
 

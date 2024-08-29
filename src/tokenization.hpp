@@ -22,7 +22,8 @@ enum class TokenType {
     elif,
     else_,
     _print,
-    _print_value
+    _print_value,
+    while_
 };
 
 inline string to_string(const TokenType type)
@@ -56,6 +57,8 @@ inline string to_string(const TokenType type)
         return "`{`";
     case TokenType::close_curly:
         return "`}`";
+    case TokenType::while_:
+        return "`for`";
     case TokenType::if_:
         return "`if`";
     case TokenType::elif:
@@ -118,6 +121,10 @@ public:
                 }
                 else if (buf == "print") {
                     tokens.push_back({ TokenType::_print, line_count });
+                    buf.clear();
+                }
+                else if (buf == "while") {
+                    tokens.push_back({ TokenType::while_, line_count });
                     buf.clear();
                 }
                 else if (buf == "elif") {

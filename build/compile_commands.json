@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/shashanks/Documents/demo/compiler/build",
-  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/comp.dir/src/main.cpp.o -c /home/shashanks/Documents/demo/compiler/src/main.cpp",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/basic.dir/src/main.cpp.o -c /home/shashanks/Documents/demo/compiler/src/main.cpp",
   "file": "/home/shashanks/Documents/demo/compiler/src/main.cpp",
-  "output": "CMakeFiles/comp.dir/src/main.cpp.o"
+  "output": "CMakeFiles/basic.dir/src/main.cpp.o"
 }
 ]

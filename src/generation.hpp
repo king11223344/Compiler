@@ -245,6 +245,20 @@ public:
                 }
                 gen.m_output << "    ;; /if\n";
             }
+            void operator()(const NodeStmtwhile* stmt_while) const
+            {
+                gen.m_output << "    ;; while\n";
+                gen.m_output << "loop_start"<<gen.loop_count<<":\n";
+                gen.gen_expr(stmt_while->expr);
+                gen.pop("rax");
+                const string label = gen.create_label();
+                gen.m_output << "    test rax, rax\n";
+                gen.m_output << "    jz " << label << "\n";
+                gen.gen_scope(stmt_while->scope);
+                gen.m_output << "jmp loop_start"<<gen.loop_count++<<"\n";
+                gen.m_output << label << ":\n";
+                gen.m_output << "    ;; /while\n";
+            }
         };
 
         StmtVisitor visitor { .gen = *this };
@@ -267,6 +281,7 @@ public:
 
 private:
     int print_count=0;
+    int loop_count=0;
     void push(const string& reg)
     {
         m_output << "    push " << reg << "\n";

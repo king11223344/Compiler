@@ -1,3 +1,3 @@
-/home/shashanks/Documents/demo/compiler/build/CMakeFiles/comp.dir
+/home/shashanks/Documents/demo/compiler/build/CMakeFiles/basic.dir
 /home/shashanks/Documents/demo/compiler/build/CMakeFiles/edit_cache.dir
 /home/shashanks/Documents/demo/compiler/build/CMakeFiles/rebuild_cache.dir

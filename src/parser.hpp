@@ -2,7 +2,6 @@
 
 #include <cassert>
 #include <variant>
-
 #include "arena.hpp"
 #include "tokenization.hpp"
 using namespace std;
@@ -95,6 +94,12 @@ struct NodeStmtIf {
     NodeScope* scope {};
     optional<NodeIfPred*> pred;
 };
+struct NodeStmtwhile {
+    NodeExpr* expr {};
+    NodeScope* scope {};
+    optional<NodeIfPred*> pred;
+};
+
 
 struct NodePrintStmt{
     Token value;
@@ -106,7 +111,7 @@ struct NodeStmtAssign {
 };
 
 struct NodeStmt {
-    variant<NodeStmtExit*, NodeStmtLet*, NodeScope*, NodeStmtIf*, NodeStmtAssign*,NodePrintStmt*> var;
+    variant<NodeStmtExit*, NodeStmtLet*, NodeScope*, NodeStmtIf*, NodeStmtAssign*,NodePrintStmt*,NodeStmtwhile*> var;
 };
 
 struct NodeProg {
@@ -347,6 +352,26 @@ public:
             }
             stmt_if->pred = parse_if_pred();
             auto stmt = m_allocator.emplace<NodeStmt>(stmt_if);
+            return stmt;
+        }
+        if (auto for_ = try_consume(TokenType::while_)) {
+            try_consume_err(TokenType::open_paren);
+
+            auto stmt_while = m_allocator.emplace<NodeStmtwhile>();
+            if (const auto expr = parse_expr()) {
+                stmt_while->expr = expr.value();
+            }
+            else {
+                error_expected("expression");
+            }
+            try_consume_err(TokenType::close_paren);
+            if (const auto scope = parse_scope()) {
+                stmt_while->scope = scope.value();
+            }
+            else {
+                error_expected("scope");
+            }
+            auto stmt = m_allocator.emplace<NodeStmt>(stmt_while);
             return stmt;
         }
         return {};

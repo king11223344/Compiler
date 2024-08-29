@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "comp::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-comp-Debug-4985b5e34d5fbec10a12.json",
-					"name" : "comp",
+					"id" : "basic::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-basic-Debug-15dbe196fb9b55474373.json",
+					"name" : "basic",
 					"projectIndex" : 0
 				}
 			]
